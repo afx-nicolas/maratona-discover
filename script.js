@@ -122,7 +122,7 @@ const Utils = {
 
   formatAmount(value) {
     value = Number(value) * 100
-    return value
+    return Number(value.toFixed(2))
   },
 
   formatDate(date) {
@@ -175,7 +175,16 @@ const Form = {
   clearFields() {
     Form.description.value = ""
     Form.amount.value = ""
-    Form.date.value = ""
+    Form.date.value = Form.initialDate()
+  },
+
+  initialDate() {
+    const today = new Date()
+    const date = 
+    today.getFullYear().toString() + '-' + (today.getMonth() + 1).toString().padStart(2, 0) +
+    '-' + today.getDate().toString().padStart(2, 0)
+
+    return date
   },
 
   submit(event) {
@@ -201,11 +210,11 @@ const Form = {
 
 }
 
-
 const App = {
   init() {
     Transaction.all.forEach(DOM.addTransaction)
-    
+    Form.clearFields()
+
     DOM.updateBalance()
 
     Storage.set(Transaction.all)
