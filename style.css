@@ -11,6 +11,82 @@
   --light-gray: #969cb3;
 }
 
+@keyframes init {
+  0% {
+    transform: translatey(15%);
+    opacity: 0;
+  }
+  100% {
+    transform: translatey(0);
+    opacity: 1;
+  }
+}
+
+@keyframes logo-init {
+  0% {
+    transform: translatey(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translatey(0);
+    opacity: 1;
+  }
+}
+
+@keyframes modal-overlay {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-anim {
+  0% {
+    transform: translatey(-30%);
+    opacity: 0;
+  }
+  100% {
+    transform: translatey(0);
+    opacity: 1;
+  }
+}
+
+@keyframes table-anim {
+  0% {
+    transform: translatey(-25%);
+    opacity: 0;
+  }
+  100% {
+    transform: translatex(0);
+    opacity: 1;
+  }
+}
+
+@keyframes footer {
+  0% {
+    transform: translatey(25%);
+    opacity: 0;
+  }
+  100% {
+    transform: translatey(0);
+    opacity: 0.6;
+  }
+}
+
+.logo-init {
+  animation: logo-init .8s ease-in-out;
+}
+
+.init {
+  animation: init .8s ease-in-out;
+}
+
+.tr-anim {
+  animation: table-anim .8s ease-in-out;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -55,7 +131,7 @@ h2 {
 a {
   color: var(--green);
   text-decoration: none;
-  transition: color 0.1s;
+  transition: color .3s;
 }
 
 a:hover {
@@ -81,7 +157,7 @@ a:hover {
   align-items: center;
   justify-content: center;
   opacity: 0.6;
-  transition: opacity .1s;
+  transition: opacity .3s;
 }
 
 .button.cancel:hover {
@@ -231,11 +307,16 @@ td.expense {
   visibility: visible;
 }
 
+.modal-overlay.active .modal {
+  animation: modal-anim .5s;
+}
+
 .modal {
   width: min(90%, 500px);
   position: relative;
   background-color: var(--background);
   padding: 2.4rem;
+  border-radius: 0.25rem;
 }
 
 /* Form ======================= */
@@ -258,6 +339,10 @@ td.expense {
   margin-top: 0.8rem;
 }
 
+.input-group input:focus {
+  outline: 1px solid var(--green);
+}
+
 .help {
   font-size: 0.75rem;
   opacity: 0.4;
@@ -274,8 +359,8 @@ footer {
   text-align: center;
   padding: 4rem 0 2rem;
   color: var(--dark-blue);
-
   opacity: 0.6;
+  animation: footer .8s ease-in-out;
 }
 
 /* Responsive ================= */
