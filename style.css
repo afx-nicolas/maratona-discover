@@ -118,6 +118,14 @@ body {
   margin: auto;
 }
 
+.no-select {
+user-select: none;
+-moz-user-select: none;
+-webkit-user-drag: none;
+-webkit-user-select: none;
+-ms-user-select: none;
+}
+
 /* Titles ===================== */
 h2 {
   margin-top: 3.2rem;
@@ -226,6 +234,36 @@ header {
 .card.total {
   background: var(--green);
   color: white;
+}
+
+@keyframes card-negative {
+  from {
+    background: var(--green);
+  }
+  to {
+    background: var(--red);
+  }
+}
+
+@keyframes card-positive {
+  from {
+    background: var(--red);
+  }
+  to {
+    background: var(--green);
+  }
+}
+
+.card.total-positive {
+  background: var(--green);
+  color: white;
+  animation: card-positive .3s .2s;
+}
+
+.card.total-negative {
+  background: var(--red);
+  color: white;
+  animation: card-negative .3s .2s;
 }
 
 /* Table ===================== */

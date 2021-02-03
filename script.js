@@ -59,7 +59,6 @@ const Transaction = {
     // Soma as entradas e as saídas
     // Atribui a soma para a variavel
     const total = Transaction.incomes() + Transaction.expenses()
-    
     // Retorna a variavel
     return total
   }
@@ -92,15 +91,41 @@ const DOM = {
   },
 
   updateBalance() {
-    document
-      .querySelector("#incomeDisplay")
-      .innerHTML = Utils.formatCurrency(Transaction.incomes())
-    document
-      .querySelector("#expenseDisplay")
-      .innerHTML = Utils.formatCurrency(Transaction.expenses())
-    document
-      .querySelector("#totalDisplay")
-      .innerHTML = Utils.formatCurrency(Transaction.total())
+    const income = document.querySelector("#incomeDisplay")
+    const expense = document.querySelector("#expenseDisplay")
+    const total = document.querySelector("#totalDisplay")
+
+    income.innerHTML = Utils.formatCurrency(Transaction.incomes())
+    expense.innerHTML = Utils.formatCurrency(Transaction.expenses())
+    total.innerHTML = Utils.formatCurrency(Transaction.total())
+
+    DOM.balanceCheck(income, expense, total)
+  },
+
+  balanceCheck(income, expense, total) {
+    if(income.innerHTML == "R$&nbsp;0,00") {
+      document.querySelector('#incomeDisplay').style.color = "var(--dark-blue)"
+      document.querySelector('#incomeDisplay').style.transition = "color .5s"
+    } else {
+      document.querySelector('#incomeDisplay').style.color = "var(--green)"
+      document.querySelector('#incomeDisplay').style.transition = "color .5s"
+    }
+
+    if(expense.innerHTML == "R$&nbsp;0,00") {
+      document.querySelector('#expenseDisplay').style.color = "var(--dark-blue)"
+      document.querySelector('#expenseDisplay').style.transition = "color .5s"
+    } else {
+      document.querySelector('#expenseDisplay').style.color = "var(--red)"
+      document.querySelector('#expenseDisplay').style.transition = "color .5s"
+    }
+
+    if(total.innerHTML.includes("-")) {
+      document.querySelector('.card.total').style.background = "var(--red)"
+      document.querySelector('.card.total').style.transition = "background .5s"
+    } else {
+      document.querySelector('.card.total').style.background = "var(--green)"
+      document.querySelector('.card.total').style.transition = "background .5s"
+    }
   },
 
   clearTransactions() {
